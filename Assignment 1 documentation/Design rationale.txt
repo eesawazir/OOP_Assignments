@@ -1,0 +1,29 @@
+Assignment 1 Design Rationale:
+
+-Most of the actions performed by the actors have their own class in case they can be reused by other actors if new specifications come in.
+ This reinforces the the DRY principle as we don't have to code the same things again if 2 actors have the same actions.[Like FollowBehavior 
+ which is used by Grunt and Goon]
+ 
+-Some actions like 'Ninja has to move 1 step after attacking' does not have its own class as it is not a common action to do so it is quite 
+ safe to just define it in the Ninja class.
+ 
+-There are 2 different classes for Rocket and RocketPad as we will use the RocketPad to build the rocket but then later its the Rocket that 
+ the player will ride, not the RocketPad. It also make it simpler to add new functionalities, for example: if future requirements ask us to 
+ move the rocket or the rocket can be built on different platforms, the Rocket object can remain the same while manipulating it.
+  
+-RocketParts will have the rocket plans, body and engine as its fields and it will also keep track of who currently have the different parts.
+ This way we can prevent complications where if each part has its own class, there can be an issue where the part object is created twice and 
+ several actors have the same object. Since we keep track of who currently have each part, moving the parts between actors become easier as we 
+ just have to change who currently have it or put 'None' if its on the ground but have to keep track where it is on the map.  
+
+-Unlike RocketParts, Key has its own class as there can be several key which are kept with player or enemies, 
+ so we don't really have to keep track of who has a key and just give a key object to relevant actors.
+ 
+-Multiplicity exist between Key and Door as 1 key can open different doors and exist between Player and Key as the player can keep several keys
+
+-All new enemies and Q extends Actors as the base skeleton is already defined and we can just add new methods to them without having to code 
+ everything again for each one.
+ 
+-Stun works by first checking whether player (user) and ninja are within range. If they are, then the nija throws the stun powder. It then checks
+ whether the player is hit with the powder, if player is hit, then a check for if player was already stunned before this. If not then player is 
+ stunned and if not then it has no effect.

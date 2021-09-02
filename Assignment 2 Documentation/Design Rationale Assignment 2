@@ -1,0 +1,9 @@
+We couldn't assign rocketpart. We had to add 2 classes addRocketBody and
+addRocketEngine to build the Rocket on the RocketPad. We just created an object 
+for each parts and used them as items.
+
+We added UnlockDoorAction to allow the player to be able to open a door.
+
+We don't have to make a class for addplan because when you interact with Q, it
+takes our plan and return the body.So when building the rocket too we don't have 
+to give it a plan as having the body means we already had the plan as prerequisite.
